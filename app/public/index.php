@@ -1,9 +1,21 @@
 <?php
 
 use App\Controller\User;
+use App\Util\Config;
 use Slim\Factory\AppFactory;
 
 require __DIR__ . '/../vendor/autoload.php';
+
+$containerBuilder = new \DI\ContainerBuilder();
+$containerBuilder->addDefinitions([
+    "settings" => [
+        "salutation" => "welcome!"
+    ],
+    Config::class => \DI\autowire()->constructor(\DI\get("settings")),
+]);
+
+$container = $containerBuilder->build();
+AppFactory::setContainer($container);
 
 /**
  * Instantiate App

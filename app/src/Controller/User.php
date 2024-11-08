@@ -9,8 +9,9 @@ class User extends Controller
 {
     public function index(Request $request, Response $response, $args)
     {
-        $name = $args['name'] ?? "tata";
-        $response->getBody()->write("Hello, $name");
+        $salutation = $this->getConfig()->get("salutation");
+        $name = $args['name'] ?? "toto";
+        $response->getBody()->write("$salutation, $name");
 
         return $response;
     }
