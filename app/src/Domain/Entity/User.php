@@ -1,11 +1,11 @@
 <?php
 
+use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\UniqueConstraint;
-use Repository\UserRepository;
 
 #[Entity(repositoryClass: UserRepository::class, readOnly: false)]
 #[UniqueConstraint(name: "email", columns: ["email"])]

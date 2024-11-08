@@ -10,6 +10,8 @@
         "laminas/laminas-diactoros": "^3.5",
         "php-di/php-di": "^7.0",
         "doctrine/orm": "^2",
-        "symfony/cache": "^7.1"
+        "symfony/cache": "^7.1",
+        "doctrine/migrations": "^3.8",
+        "vlucas/phpdotenv": "^5.6"
     }
 }

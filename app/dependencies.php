@@ -6,26 +6,20 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\ORMSetup;
 use Psr\Container\ContainerInterface;
 
-const APP_ROOT = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR;
+const APP_ROOT = __DIR__ . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR;
 
 return function (ContainerBuilder $containerBuilder) {
     $containerBuilder->addDefinitions([
         EntityManager::class => function (ContainerInterface $container): EntityManager {
+            $settings = $container->get('settings');
+
             $config = ORMSetup::createAttributeMetadataConfiguration(
-                [APP_ROOT . '/src/Domain'],
-                true
+                $settings['doctrine']['metadata_dirs'],
+                $settings['doctrine']['dev_mode']
             );
 
             return new EntityManager(DriverManager::getConnection(
-                [
-                    'driver' => 'pdo_mysql',
-                    'host' => 'localhost',
-                    'port' => 3306,
-                    'dbname' => 'charge-map',
-                    'user' => 'user',
-                    'password' => 'secret',
-                    'charset' => 'utf8'
-                ],
+                $settings['database'],
                 $config
             ), $config);
         }

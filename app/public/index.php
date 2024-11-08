@@ -7,8 +7,10 @@ require __DIR__ . '/../vendor/autoload.php';
 
 $containerBuilder = new \DI\ContainerBuilder();
 
+// Set up settings
+$settings = require __DIR__ . '/../settings.php';
 // Set up dependencies
-$dependencies = require __DIR__ . '/../config/dependencies.php';
+$dependencies = require __DIR__ . '/../dependencies.php';
 $dependencies($containerBuilder);
 
 $container = $containerBuilder->build();
