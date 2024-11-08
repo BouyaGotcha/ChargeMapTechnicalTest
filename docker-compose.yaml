@@ -5,7 +5,6 @@ services:
     ports:
       - '9000:9000'
     volumes:
-      - /var/www/app/vendor
       - ./app:/var/www/app
 
   nginx:
