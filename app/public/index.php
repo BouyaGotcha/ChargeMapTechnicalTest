@@ -9,7 +9,7 @@ use Slim\Factory\AppFactory;
 $app = AppFactory::create();
 
 $app->get('/', function (RequestInterface $request, ResponseInterface $response, array $args) {
-$response->getBody()->write('Hello from Slim 4 request handler');
+$response->getBody()->write('Hello from Moi');
 return $response;
 });
 
