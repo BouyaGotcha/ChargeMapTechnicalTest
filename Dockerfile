@@ -1,4 +1,4 @@
-FROM php:8.1-fpm AS php
+FROM php:8.2-fpm AS php
 
 RUN apt update \
     && apt install -y zlib1g-dev g++ git libicu-dev zip libzip-dev zip libpq-dev \
@@ -9,6 +9,10 @@ RUN apt update \
     && docker-php-ext-configure zip \
     && docker-php-ext-install zip
 
-WORKDIR /var/www/slim_app
+WORKDIR /var/www/app
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+COPY app .
+
+COPY --from=composer /usr/bin/composer /usr/bin/composer
+
+RUN composer install && composer dumpautoload
