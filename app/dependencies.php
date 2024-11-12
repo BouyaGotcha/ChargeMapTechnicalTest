@@ -1,5 +1,6 @@
 <?php
 
+use App\Repository\UserRepository;
 use DI\ContainerBuilder;
 use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\EntityManager;
@@ -22,6 +23,9 @@ return function (ContainerBuilder $containerBuilder) {
                 $settings['database'],
                 $config
             ), $config);
+        },
+        UserRepository::class => function (ContainerInterface $container): UserRepository {
+            return new UserRepository($container->get(EntityManager::class));
         }
     ]);
 };

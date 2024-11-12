@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Domain\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 
 class UserRepository
@@ -15,7 +16,7 @@ class UserRepository
     {
         $qb = $this->entityManager->createQueryBuilder()
             ->select('u')
-            ->from('App:User', 'u');
+            ->from(User::class, 'u');
 
         return $qb->getQuery()->getResult();
     }

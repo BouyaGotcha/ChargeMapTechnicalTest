@@ -7,9 +7,11 @@ use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\Table;
 use Doctrine\ORM\Mapping\UniqueConstraint;
 
 #[Entity(repositoryClass: UserRepository::class, readOnly: false)]
+#[Table(name: "users")]
 #[UniqueConstraint(name: "email", columns: ["email"])]
 class User
 {
