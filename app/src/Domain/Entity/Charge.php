@@ -38,4 +38,80 @@ class Charge
 
     #[ManyToOne(targetEntity: "User", cascade: ["all"], fetch: "EAGER")]
     protected ?User $user = null;
+
+    public function __construct($energyConsumed, $cost, $succeeded, User $user)
+    {
+        $this->energyConsumed = $energyConsumed;
+        $this->cost = $cost;
+        $this->succeeded = $succeeded;
+        $this->user = $user;
+
+        $this->createdAt = new DateTime();
+    }
+
+    public function getUuid(): ?string
+    {
+        return $this->uuid;
+    }
+
+    public function setUuid(?string $uuid): Charge
+    {
+        $this->uuid = $uuid;
+        return $this;
+    }
+
+    public function getEnergyConsumed(): ?int
+    {
+        return $this->energyConsumed;
+    }
+
+    public function setEnergyConsumed(?int $energyConsumed): Charge
+    {
+        $this->energyConsumed = $energyConsumed;
+        return $this;
+    }
+
+    public function getCost(): ?int
+    {
+        return $this->cost;
+    }
+
+    public function setCost(?int $cost): Charge
+    {
+        $this->cost = $cost;
+        return $this;
+    }
+
+    public function getCreatedAt(): ?DateTime
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(?DateTime $createdAt): Charge
+    {
+        $this->createdAt = $createdAt;
+        return $this;
+    }
+
+    public function getSucceeded(): ?bool
+    {
+        return $this->succeeded;
+    }
+
+    public function setSucceeded(?bool $succeeded): Charge
+    {
+        $this->succeeded = $succeeded;
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): Charge
+    {
+        $this->user = $user;
+        return $this;
+    }
 }
