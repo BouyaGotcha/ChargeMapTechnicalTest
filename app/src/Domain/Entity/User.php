@@ -3,6 +3,7 @@
 namespace App\Domain\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
@@ -22,12 +23,23 @@ class User
     #[Column(type: "string", length: 255)]
     protected ?string $email = null;
 
-    #[Column(type: "string", length: 255)]
+    #[Column(name: "first_name", type: "string", length: 255)]
     protected ?string $firstName = null;
 
-    #[Column(type: "string", length: 255)]
+    #[Column(name: "last_name", type: "string", length: 255)]
     protected ?string $lastName = null;
 
     #[OneToMany(mappedBy: "user", targetEntity: "Charge", cascade: ["persist", "remove"], orphanRemoval: true)]
-    protected ?array $charges = null;
+    protected Collection|null $charges = null;
+
+    public function __construct(
+        string $email,
+        string $firstName,
+        string $lastName
+    )
+    {
+        $this->email = $email;
+        $this->firstName = $firstName;
+        $this->lastName = $lastName;
+    }
 }
