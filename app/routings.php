@@ -5,5 +5,5 @@ use Slim\App;
 
 return function(App $app){
     $app->post('/users', UserController::class . ":createUser");
-    $app->delete('/users/{id}', UserController::class . ":deleteUser");
+    $app->delete('/users/{email}', UserController::class . ":deleteUser");
 };

@@ -11,8 +11,9 @@ use Doctrine\ORM\OptimisticLockException;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Exception\HttpBadRequestException;
+use Slim\Exception\HttpNotFoundException;
 
-class UserController extends Controller
+class UserController
 {
     public function __construct(
         private readonly EntityManager  $entityManager,
@@ -25,7 +26,7 @@ class UserController extends Controller
      * @throws OptimisticLockException
      * @throws ORMException
      */
-    public function createUser(Request $request, Response $response, $args)
+    public function createUser(Request $request, Response $response, $args): Response
     {
         $body = $request->getParsedBody();
         if (!array_key_exists('email', $body)
@@ -48,6 +49,16 @@ class UserController extends Controller
 
     public function deleteUser(Request $request, Response $response, $args)
     {
+        $email = $args['email'];
+        $user = $this->userRepository->findOneByEmail($email);
 
+        if(!$user) {
+            throw new HttpNotFoundException($request, 'User not found');
+        }
+
+        $this->entityManager->remove($user);
+        $this->entityManager->flush();
+
+        return $response->withStatus(204);
     }
 }
