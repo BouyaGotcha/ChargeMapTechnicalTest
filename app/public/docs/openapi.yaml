@@ -1,0 +1,11 @@
+openapi: 3.0.0
+info:
+  title: 'ChargeMap Technical Test'
+  version: '0.1'
+paths:
+  /users:
+    post:
+      operationId: 3b67b56d9233165263f1d5b2678078d7
+      responses:
+        '201':
+          description: 'User created'

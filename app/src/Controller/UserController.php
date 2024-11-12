@@ -12,6 +12,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Exception\HttpBadRequestException;
 use Slim\Exception\HttpNotFoundException;
+use OpenApi\Attributes as OA;
 
 class UserController
 {
@@ -23,6 +24,8 @@ class UserController
      * @throws OptimisticLockException
      * @throws ORMException
      */
+    #[OA\Post(path: '/users')]
+    #[OA\Response(response: '201', description: 'User created')]
     public function createUser(Request $request, Response $response, $args): Response
     {
         $body = $request->getParsedBody();
