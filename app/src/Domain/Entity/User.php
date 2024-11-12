@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Domain\Entity;
+
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;

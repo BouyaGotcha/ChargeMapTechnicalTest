@@ -1,6 +1,6 @@
 <?php
 
-use App\Controller\User;
+use App\Controller\UserController;
 use Slim\Factory\AppFactory;
 
 require __DIR__ . '/../vendor/autoload.php';
@@ -9,6 +9,7 @@ $containerBuilder = new \DI\ContainerBuilder();
 
 // Set up settings
 $settings = require __DIR__ . '/../settings.php';
+$settings($containerBuilder);
 // Set up dependencies
 $dependencies = require __DIR__ . '/../dependencies.php';
 $dependencies($containerBuilder);
@@ -45,7 +46,7 @@ $app->addRoutingMiddleware();
 $errorMiddleware = $app->addErrorMiddleware(true, true, true);
 
 // Define app routes
-$app->get('/', User::class . ":index");
+$app->get('/', UserController::class . ":index");
 
 // Run app
 $app->run();
