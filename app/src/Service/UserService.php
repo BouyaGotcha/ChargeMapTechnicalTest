@@ -27,7 +27,7 @@ class UserService
      * @throws UserAlreadyExistsException
      * @throws ORMException
      */
-    public function createUser(array $data): void
+    public function createUser(array $data): User
     {
         try {
             $user = new User($data['email'], $data['firstName'], $data['lastName']);
@@ -36,6 +36,8 @@ class UserService
         } catch (UniqueConstraintViolationException $e) {
             throw new UserAlreadyExistsException();
         }
+
+        return $user;
     }
 
     /**

@@ -25,6 +25,8 @@ AppFactory::setContainer($container);
  */
 $app = AppFactory::create();
 
+$app->addBodyParsingMiddleware();
+
 /**
  * The routing middleware should be added earlier than the ErrorMiddleware
  * Otherwise exceptions thrown from it will not be handled by the middleware

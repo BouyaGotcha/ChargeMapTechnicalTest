@@ -27,19 +27,21 @@
 ## User guide
 
 - Project will be available at <a href="http://localhost">http://localhost</a> 
-- Swagger-UI will be available at <a href="http://localhost/docs">http://localhost/docs</a>
 - You can run unit tests with that command
     ```shell
     docker exec php vendor/bin/phpunit tests
     ```
+- Swagger-UI will be available at <a href="http://localhost/docs">http://localhost/docs</a>
 - If needed you can regen openapi doc
     ```shell
     docker exec php vendor/bin/openapi src -o public/docs/openapi.yaml
     ```
 
-## Potential improvements
+## Improvements
 
 - Entrypoint with composer install
 - Usage of interfaces
 - Serialization components
 - DDD
+- More Unit testing
+- Fixtures for unit testing

@@ -15,7 +15,6 @@ class ChargeService
 
     public function __construct(
         private readonly EntityManager    $entityManager,
-        private readonly ChargeRepository $chargeRepository,
         private readonly UserService      $userService
     )
     {
@@ -28,13 +27,15 @@ class ChargeService
      * @throws UserNotFoundException
      * @throws NonUniqueResultException
      */
-    public function createChargeForUser($email, $data): void
+    public function createChargeForUser($email, $data): Charge
     {
         $user = $this->userService->getUserByEmail($email);
         $charge = new Charge($data['energyConsumed'], $data['cost'], $data['succeeded'], $user);
 
         $this->entityManager->persist($charge);
         $this->entityManager->flush();
+
+        return $charge;
     }
 
 }

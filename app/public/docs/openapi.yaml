@@ -3,9 +3,103 @@ info:
   title: 'ChargeMap Technical Test'
   version: '0.1'
 paths:
+  '/charges/{email}':
+    post:
+      tags:
+        - Charges
+      operationId: 37b5c154e7cc7b99414bee36a5037ed8
+      parameters:
+        -
+          name: email
+          in: path
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                energyConsumed:
+                  type: integer
+                cost:
+                  type: integer
+                succeeded:
+                  type: boolean
+              type: object
+            examples:
+              Charge:
+                summary: 'Charge test'
+                value:
+                  energyConsumed: 50
+                  cost: 10
+                  succeeded: 1
+      responses:
+        '201':
+          description: 'Charge created'
   /users:
     post:
+      tags:
+        - Users
       operationId: 3b67b56d9233165263f1d5b2678078d7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                email:
+                  type: string
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+              type: object
+            examples:
+              User:
+                summary: 'User test'
+                value:
+                  email: test@test.com
+                  firstName: test
+                  lastName: test
       responses:
         '201':
           description: 'User created'
+  '/users/{email}':
+    delete:
+      tags:
+        - Users
+      operationId: c36e0c4209ecf2333532548a0fe597bb
+      parameters:
+        -
+          name: email
+          in: path
+          required: true
+      responses:
+        '204':
+          description: 'User deleted'
+  '/users/{email}/stats':
+    get:
+      tags:
+        - Users
+      operationId: 984569162478264f32568cb098c3cc90
+      parameters:
+        -
+          name: email
+          in: path
+          required: true
+      responses:
+        '200':
+          description: 'User stats'
+          content:
+            application/json:
+              schema:
+                properties:
+                  charges: { type: integer }
+                  totalEnergyConsumed: { type: integer }
+                  averageCost: { type: number, format: float }
+                type: object
+tags:
+  -
+    name: Charges
+    description: Charges
+  -
+    name: Users
+    description: Users
