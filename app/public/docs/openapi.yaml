@@ -9,8 +9,7 @@ paths:
         - Charges
       operationId: 37b5c154e7cc7b99414bee36a5037ed8
       parameters:
-        -
-          name: email
+        - name: email
           in: path
           required: true
       requestBody:
@@ -68,8 +67,7 @@ paths:
         - Users
       operationId: c36e0c4209ecf2333532548a0fe597bb
       parameters:
-        -
-          name: email
+        - name: email
           in: path
           required: true
       responses:
@@ -81,8 +79,7 @@ paths:
         - Users
       operationId: 984569162478264f32568cb098c3cc90
       parameters:
-        -
-          name: email
+        - name: email
           in: path
           required: true
       responses:
@@ -97,9 +94,7 @@ paths:
                   averageCost: { type: number, format: float }
                 type: object
 tags:
-  -
-    name: Charges
+  - name: Charges
     description: Charges
-  -
-    name: Users
+  - name: Users
     description: Users

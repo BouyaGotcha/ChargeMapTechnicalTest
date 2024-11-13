@@ -4,7 +4,6 @@ namespace App\Service;
 
 use App\Domain\Entity\Charge;
 use App\Exception\UserNotFoundException;
-use App\Repository\ChargeRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Exception\ORMException;
 use Doctrine\ORM\NonUniqueResultException;
@@ -14,8 +13,8 @@ class ChargeService
 {
 
     public function __construct(
-        private readonly EntityManager    $entityManager,
-        private readonly UserService      $userService
+        private readonly EntityManager $entityManager,
+        private readonly UserService   $userService
     )
     {
 

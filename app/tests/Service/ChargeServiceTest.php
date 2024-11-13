@@ -20,7 +20,8 @@ class ChargeServiceTest extends TestCase
     private array $data = [];
     private User $user;
 
-    public function setUp(): void{
+    public function setUp(): void
+    {
         $this->entityManager = $this->createMock(EntityManager::class);
         $this->userService = $this->createMock(UserService::class);
 
@@ -42,7 +43,8 @@ class ChargeServiceTest extends TestCase
      * @throws UserNotFoundException
      * @throws NonUniqueResultException
      */
-    public function testCreateChargeForUser(){
+    public function testCreateChargeForUser()
+    {
         $this->userService->method('getUserByEmail')->willReturn($this->user);
         $chargeService = new ChargeService($this->entityManager, $this->userService);
 
