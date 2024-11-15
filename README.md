@@ -1,5 +1,14 @@
 # ChargeMapTechnicalTest
 
+I realised this technical test during the process of recruiting by ChargeMap. You can find the specifications in the PDF.
+I let you be the judge of my completion of the specifications.
+
+They judged that it wasn't enough for a senior backend developper position with dev-ops tasks also.
+Their justification is that the level of code is not enough, it's missing components such as validators (not specified in the PDF).
+Apparently you're supposed to read their minds.
+
+I hope this can help anyone else that has to take it. Start with that and guess what else they may want.
+
 ## Requirements
 
 - Docker
